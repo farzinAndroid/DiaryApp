@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.diaryapp'
+    namespace 'com.farzin.diaryapp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.diaryapp"
+        applicationId "com.farzin.diaryapp"
         minSdk 26
         targetSdk 33
         versionCode 1
