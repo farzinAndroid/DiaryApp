@@ -3,8 +3,10 @@ package com.farzin.diaryapp.viewmodels
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.farzin.diaryapp.R
 import com.farzin.diaryapp.util.Constants.APP_ID
 import com.farzin.diaryapp.util.Constants.toString
 import io.realm.kotlin.mongodb.App
@@ -29,7 +31,7 @@ class AuthViewModel() : ViewModel() {
 
     fun signInToMongoAtlas(
         tokenId: String,
-        onSuccess: (Boolean) -> Unit,
+        onSuccess: () -> Unit,
         onError: (Exception) -> Unit,
     ) {
 
@@ -48,9 +50,14 @@ class AuthViewModel() : ViewModel() {
                 }
 
                 withContext(Dispatchers.Main){
-                    onSuccess(result)
-                    delay(1000)
-                    isAuthenticated.value = true
+                    if (result){
+                        onSuccess()
+                        delay(1000)
+                        isAuthenticated.value = true
+                    }else{
+                        onError(Exception("user is not logged in"))
+                    }
+
                 }
 
             }catch (e:Exception){
