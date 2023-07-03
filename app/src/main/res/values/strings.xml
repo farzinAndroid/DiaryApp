@@ -11,4 +11,8 @@
     <string name="no">No</string>
     <string name="dialog_title">Sign out</string>
     <string name="dialog_message">Are you sure you want to Sign out of you Google Account?</string>
+    <string name="show_gallery">Show Gallery</string>
+    <string name="hide_gallery">Hide Gallery</string>
+    <string name="empty_diary">Empty Diary</string>
+    <string name="write_somthing">Write something</string>
 </resources>

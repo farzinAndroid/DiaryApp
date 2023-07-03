@@ -8,4 +8,8 @@ object Constants {
 
     const val   WRITE_SCREEN_ARGUMENT = "diaryId"
 
+
+
+    const val   SUB_NAME = "User's Diaries"
+
 }

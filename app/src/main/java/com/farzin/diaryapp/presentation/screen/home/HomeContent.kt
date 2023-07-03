@@ -1,9 +1,13 @@
 package com.farzin.diaryapp.presentation.screen.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,69 +17,40 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.farzin.diaryapp.model.Diary
+import com.farzin.diaryapp.presentation.components.DiaryHolder
 import java.time.LocalDate
 
+
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DateHeader(localDate: LocalDate) {
+fun HomeContent(
+    homeDiaries: Map<LocalDate, List<Diary>>,
+    onClick: (String) -> Unit,
+) {
 
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+    if (homeDiaries.isNotEmpty()) {
 
-        Column(
-            horizontalAlignment = Alignment.End
-        ) {
+        LazyColumn(modifier = Modifier.padding(horizontal = 24.dp)) {
 
-            Text(
-                text = String.format("%02d", localDate.dayOfMonth),
-                style = TextStyle(
-                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    fontWeight = FontWeight.Normal
-                )
-            )
+            homeDiaries.forEach { (localDate, diaries) ->
+                stickyHeader(key = localDate) {
+                    DateHeader(localDate = localDate)
+                }
 
-            Text(
-                text = localDate.dayOfWeek.toString().take(3),
-                style = TextStyle(
-                    fontSize = MaterialTheme.typography.bodySmall.fontSize,
-                    fontWeight = FontWeight.Normal
-                )
-            )
+                items(
+                    diaries,
+                    key = { it._id }
+                ) {
+                    DiaryHolder(diary = it, onClick = onClick)
+                }
+
+            }
 
         }
 
-        Spacer(modifier = Modifier.width(14.dp))
-
-        Column(
-            horizontalAlignment = Alignment.Start
-        ) {
-
-            Text(
-                text = localDate.month.toString().lowercase().replaceFirstChar { it.titlecase() },
-                style = TextStyle(
-                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    fontWeight = FontWeight.Normal
-                )
-            )
-
-            Text(
-                text = localDate.year.toString(),
-                style = TextStyle(
-                    fontSize = MaterialTheme.typography.bodySmall.fontSize,
-                    fontWeight = FontWeight.Normal
-                ),
-                color = MaterialTheme.colorScheme.onSurface.copy(0.38f)
-            )
-
-        }
-
+    } else {
+        EmptyPageScreen()
     }
 
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HeaderPreview() {
-    DateHeader(localDate = LocalDate.now())
 }

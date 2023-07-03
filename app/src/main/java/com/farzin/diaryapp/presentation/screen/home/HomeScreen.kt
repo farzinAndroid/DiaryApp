@@ -63,14 +63,17 @@ fun HomeScreen(
                         contentDescription =""
                     )
                 }
+            },
+            content = {
+                HomeContent(homeDiaries = mapOf(), onClick = {})
             }
-        ) {
-
-        }
+        )
     }
 
 
 }
+
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

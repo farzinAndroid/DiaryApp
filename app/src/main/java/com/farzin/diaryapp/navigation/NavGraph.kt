@@ -9,6 +9,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,6 +27,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.farzin.diaryapp.R
+import com.farzin.diaryapp.data.repo.MongoDB
 import com.farzin.diaryapp.presentation.components.DisplayAlertDialog
 import com.farzin.diaryapp.presentation.screen.auth.AuthScreen
 import com.farzin.diaryapp.presentation.screen.home.HomeScreen
@@ -143,6 +145,10 @@ fun NavGraphBuilder.homeScreen(
             state = drawerState,
             onSignOutClicked = { dialogOpened = true }
         )
+
+        LaunchedEffect(Unit){
+            MongoDB.configureTheRealm()
+        }
 
         DisplayAlertDialog(
             title =stringResource(R.string.dialog_title),
