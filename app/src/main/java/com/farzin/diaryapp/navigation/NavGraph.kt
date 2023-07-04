@@ -34,6 +34,7 @@ import com.farzin.diaryapp.presentation.screen.home.HomeScreen
 import com.farzin.diaryapp.util.Constants.APP_ID
 import com.farzin.diaryapp.util.Constants.WRITE_SCREEN_ARGUMENT
 import com.farzin.diaryapp.viewmodels.AuthViewModel
+import com.farzin.diaryapp.viewmodels.HomeViewModel
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
 import io.realm.kotlin.mongodb.App
@@ -134,8 +135,11 @@ fun NavGraphBuilder.homeScreen(
         val scope = rememberCoroutineScope()
 
         var dialogOpened by remember { mutableStateOf(false) }
+        val vm : HomeViewModel = viewModel()
+        val diaries by vm.diaries
 
         HomeScreen(
+            diaries = diaries,
             onMenuClicked = {
                 scope.launch {
                     drawerState.open()

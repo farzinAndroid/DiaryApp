@@ -9,7 +9,7 @@ enum class Mood(
     val containerColor : Color,
     val contentColor : Color,
 ) {
-    NEUTRAL(
+    Neutral(
         icon = R.drawable.neutral,
         containerColor = Color.Black,
         contentColor = NeutralColor

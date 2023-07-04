@@ -15,4 +15,5 @@
     <string name="hide_gallery">Hide Gallery</string>
     <string name="empty_diary">Empty Diary</string>
     <string name="write_somthing">Write something</string>
+    <string name="error">Error</string>
 </resources>

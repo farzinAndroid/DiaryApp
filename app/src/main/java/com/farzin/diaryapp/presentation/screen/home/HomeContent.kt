@@ -39,8 +39,8 @@ fun HomeContent(
                 }
 
                 items(
-                    diaries,
-                    key = { it._id }
+                    items = diaries,
+                    key = { it._id.toString()  }
                 ) {
                     DiaryHolder(diary = it, onClick = onClick)
                 }

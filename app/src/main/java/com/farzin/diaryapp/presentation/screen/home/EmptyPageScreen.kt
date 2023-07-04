@@ -16,7 +16,10 @@ import androidx.compose.ui.unit.dp
 import com.farzin.diaryapp.R
 
 @Composable
-fun EmptyPageScreen() {
+fun EmptyPageScreen(
+    title:String = stringResource(R.string.empty_diary),
+    subTitle:String = stringResource(R.string.write_somthing)
+) {
 
     Column(
         modifier = Modifier
@@ -27,7 +30,7 @@ fun EmptyPageScreen() {
     ) {
 
         Text(
-            text = stringResource(R.string.empty_diary),
+            text =title ,
             style = TextStyle(
                 fontSize = MaterialTheme.typography.titleMedium.fontSize,
                 fontWeight = FontWeight.Medium
@@ -35,7 +38,7 @@ fun EmptyPageScreen() {
         )
 
         Text(
-            text = stringResource(R.string.write_somthing),
+            text = subTitle,
             style = TextStyle(
                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                 fontWeight = FontWeight.Normal
